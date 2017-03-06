@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="geti"
+  id="myeclipse.1488511237984"
+  context-root="/geti"
+  j2ee-spec="5.0"
+  archive="geti.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

@@ -53,6 +53,8 @@ public class InterfaceDaoImp implements InterfaceDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		} finally {
+			HibernateSessionFactory.closeSession();
 		}
 	}
 
@@ -70,6 +72,24 @@ public class InterfaceDaoImp implements InterfaceDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+
+	@Override
+	public boolean updateInterface(Interface i) {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Transaction ts = session.beginTransaction();
+			session.update(i);
+			ts.commit();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally{
+			HibernateSessionFactory.closeSession();
 		}
 	}
 

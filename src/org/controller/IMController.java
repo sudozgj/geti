@@ -27,7 +27,6 @@ public class IMController {
 	@ResponseBody
 	public Object addInterface(Interface i, String mName, String mDescription)
 			throws Exception {
-		System.out.println(i.getOutput());
 		
 		Module md = mDao.getModule(mName);
 		long mId;
@@ -98,4 +97,13 @@ public class IMController {
 			return JsonObject.getResult(0, "获取接口信息失败", null);
 	}
 
+	@RequestMapping("/updateInterface")
+	@ResponseBody
+	public Object updateInterface(Interface i) throws Exception{
+		i.setTime(new Date().getTime()/1000);
+		iDao.updateInterface(i);
+		
+		return JsonObject.getResult(1, "修改接口信息成功", null);
+	}
+	
 }

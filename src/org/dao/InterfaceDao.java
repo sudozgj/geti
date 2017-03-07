@@ -25,4 +25,11 @@ public interface InterfaceDao {
 	 * @return
 	 */
 	public Interface getInterface(String name);
+	
+	/**
+	 * 编辑接口
+	 * @param i
+	 * @return
+	 */
+	public boolean updateInterface(Interface i);
 }

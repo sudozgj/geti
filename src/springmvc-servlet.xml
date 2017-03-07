@@ -12,6 +12,18 @@
 	<context:component-scan base-package="org.controller"></context:component-scan>
 	<context:component-scan base-package="org.dao"></context:component-scan>
 
+	<mvc:annotation-driven />
+	<mvc:resources location="/fonts/**" mapping="/fonts/**"/>
+	<mvc:resources location="/css/**" mapping="/css/**"/>
+
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/fonts/**"/>
+			<mvc:exclude-mapping path="/css/**"/>
+			<bean class="org.interceptor.LogInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 	<mvc:annotation-driven />
 	<mvc:resources location="/fonts/**" mapping="/fonts/**"/>
@@ -24,3 +36,4 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 </beans>
+	

@@ -1,20 +1,13 @@
 package org.test;
 
-import java.util.Date;
+import org.dao.imp.TestDaoImp;
 
-import org.dao.InterfaceDao;
-import org.dao.ModuleDao;
-import org.dao.imp.InterfaceDaoImp;
-import org.dao.imp.ModuleDaoImp;
-import org.model.Interface;
-import org.model.Module;
 
 
 public class test01 {
 	public static void main(String[] args) {
+		new TestDaoImp().addTest(); 
+		System.out.println("s");
 		
-		ModuleDao mDao = new ModuleDaoImp();
-		Module m = mDao.getModule("Log2");
-		System.out.println(m.getId());
 	}
 }

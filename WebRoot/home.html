@@ -12,12 +12,32 @@
 
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery.goup.min.js"></script>
 <script type="text/javascript" src="js/home.js"></script>
+
+<script>
+	$(document).ready(function() { //返回顶部按钮
+		$.goup({
+			trigger : 100,
+			bottomOffset : 100, //距离下
+			locationOffset : 100, //距离右
+			//title: 'This is a Demo',
+			titleAsText : true
+		});
+	});
+</script>
 </head>
 
 <body>
 	<div class="container">
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">切换导航</span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span>
+				</button>
+			</div>
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
@@ -25,11 +45,14 @@
 								class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</strong>
 					</a></li>
 					<li data-toggle="modal" data-target="#addMModal"><a href="#"><span
-							class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
+							class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
 							Add Module</a></li>
 					<li data-toggle="modal" data-target="#addIModal"><a href="#"><span
-							class="glyphicon glyphicon-tag" aria-hidden="true"></span> Add
+							class="glyphicon glyphicon-list" aria-hidden="true"></span> Add
 							Interface</a></li>
+					<li data-toggle="modal" data-target="#delMModal"><a href="#"><span
+							class="glyphicon glyphicon-tag" aria-hidden="true" id="deleteModule"></span> delete
+							Module</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -37,9 +60,8 @@
 							aria-hidden="true"></span> <span id="nav_user"
 							style="color:#3189F3"> </span> <strong class="caret"></strong> </a>
 						<ul class="dropdown-menu" id="userList">
-							<li><a href="user.html"><span
-									class="glyphicon glyphicon-list" aria-hidden="true"></span>
-									用户信息</a></li>
+							<li><a href=""><span class="glyphicon glyphicon-list"
+									aria-hidden="true"></span> 用户信息</a></li>
 							<li data-toggle="modal" data-target="#editModal"><a href="#"><span
 									class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
 									编辑信息</a>
@@ -141,17 +163,23 @@
 		</div>
 		<!-- /模态框 添加接口 -->
 
-		<div style="width: 250px" id="lList"></div>
-		<!-- <div id="ctn" style="background:#ffcfa5"> -->
-		<div id="ctn">
-			<h1 id="itName"></h1>
-			<p class="text-right" id="itTime"></p>
-			<p id=itId></p>
-			<h1 id="itMid"></h1>
-			<div id="itInput"></div>
-			<p id="itOutput"></p>
-			<p id="itDescription"></p>
-			<div id="itEdit"></div>
+		<div class="row clearfix">
+			<div class="col-sm-4 column">
+				<div style="width: 250px" id="lList"></div>
+			</div>
+			<div class="col-sm-8 column">
+				<!-- <div id="ctn" style="background:#ffcfa5"> -->
+				<div id="ctn">
+					<p class="text-right" id="itTime"></p>
+					<h1 id="itName"></h1>
+					<p id=itId></p>
+					<h1 id="itMid"></h1>
+					<div id="itInput"></div>
+					<p id="itOutput"></p>
+					<p id="itDescription"></p>
+					<div id="itEdit" class="rows"></div>
+				</div>
+			</div>
 		</div>
 
 		<!-- 模态框 编辑接口 -->
@@ -163,7 +191,7 @@
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"
 							aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel">编辑模块3</h4>
+						<h4 class="modal-title" id="myModalLabel">编辑信息</h4>
 					</div>
 					<div class="modal-body">
 						<form role="form">
@@ -206,6 +234,59 @@
 			</div>
 		</div>
 		<!-- /模态框 编辑接口 -->
+
+
+		<!-- 模态框 删除接口 
+		<div class="modal fade" id="itDModal" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true"
+			data-backdrop="static">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">
+						<form role="form">
+							<div class="form-group">
+								<h3>确定删除当前接口吗？</h3>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+						<button type="button" class="btn btn-primary" id="delIBtn">确定</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		-->
+		
+		<!-- 模态框 删除模块 -->
+		<div class="modal fade" id="delMModal" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true"
+			data-backdrop="static">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">
+						<form role="form">
+							<div class="form-group">
+								<h3>确定删除模块吗</h3>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+						<button type="button" class="btn btn-primary" id="delIBtn">确定</button>
+					</div>
+				</div>
+			</div>
+		</div><!-- /模态框 删除模块 -->
+		
 	</div>
 </body>
 </html>

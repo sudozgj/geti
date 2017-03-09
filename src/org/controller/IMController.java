@@ -27,7 +27,7 @@ public class IMController {
 	@ResponseBody
 	public Object addInterface(Interface i, String mName, String mDescription)
 			throws Exception {
-		
+
 		Module md = mDao.getModule(mName);
 		long mId;
 		if (md != null) {
@@ -91,7 +91,7 @@ public class IMController {
 	@ResponseBody
 	public Object getInterface(String iName) throws Exception {
 		Interface i = iDao.getInterface(iName);
-		if(i!=null)
+		if (i != null)
 			return JsonObject.getResult(1, "获取接口信息成功", i);
 		else
 			return JsonObject.getResult(0, "获取接口信息失败", null);
@@ -99,11 +99,33 @@ public class IMController {
 
 	@RequestMapping("/updateInterface")
 	@ResponseBody
-	public Object updateInterface(Interface i) throws Exception{
-		i.setTime(new Date().getTime()/1000);
-		iDao.updateInterface(i);
-		
-		return JsonObject.getResult(1, "修改接口信息成功", null);
+	public Object updateInterface(Interface i) throws Exception {
+		i.setTime(new Date().getTime() / 1000);
+		if(iDao.updateInterface(i))
+			return JsonObject.getResult(1, "修改接口信息成功", true);
+		else
+			return JsonObject.getResult(0, "修改接口信息失败", false);
 	}
-	
+
+	@RequestMapping("/deleteModule")
+	@ResponseBody
+	public Object deleteModule(long mid) throws Exception {
+		if(mDao.deleteModule(mid)){
+			if(iDao.deleteInterfaceByMId(mid))
+				return JsonObject.getResult(1, "删除模块、接口成功", true);
+			else
+				return JsonObject.getResult(0, "删除模块成功，删除接口失败", false);
+		}else
+			return JsonObject.getResult(-1, "删除模块失败", false);
+		
+	}
+
+	@RequestMapping("/deleteInterface")
+	@ResponseBody
+	public Object deleteInterface(long id) throws Exception {
+		if(iDao.deleteInterfaceById(id))
+			return JsonObject.getResult(1, "删除接口成功", true);
+		else
+			return JsonObject.getResult(0, "删除接口失败", false);
+	}
 }

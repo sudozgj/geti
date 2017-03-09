@@ -125,24 +125,29 @@ $(function() {
 					// $("#itId").html(data.data.id);
 					// $("#itMid").html(data.data.mid);
 					$("#itInput").html(
-							"<p>输入参数：</p><kbd>" + data.data.input
+							"<strong>输入参数：</strong><kbd>" + data.data.input
 									+ "</kbd><hr>");
 					var o = data.data.output;
-					var reg = new RegExp('\n','g');
-					var reg2 = new RegExp('\s');
-					o = o.replace(reg,'<br/>');
-					o = o.replace(reg2,'&nbsp;');
 					$("#itOutput").html(
-							"<p>输出参数：</p><strong><kbd>" + o
-									+ "</kbd></strong><hr>");
+							"<strong>输出参数：</strong><pre style='background: lemonchiffon'><h5>" + o
+									+ "</h5></pre><hr>");
 					$("#itDescription").html(
-							"<p>接口描述：</p>" + data.data.description + "<hr>");
+							"<strong>接口描述：</strong><p>" + data.data.description + "</p><hr>");
 					$("#itTime").html(changeTime(data.data.time * 1000));
 					$("#itEdit").html(
 							"<button type='button'"
 									+ " class='btn btn-primary'" + " id='itEI'"
 									+ " data-toggle='modal'"
-									+ " data-target='#itEModal' >编辑</button>");
+									+ " data-target='#itEModal' >编辑</button>"
+									+ "&nbsp"
+									+"<button type='button'"
+									+ " class='btn btn-danger'" + " id='itDI'"
+									+ "  >删除</button>");
+					
+//					$("#itDel").html(
+//							"<button type='button'"
+//							+ " class='btn btn-primary'" + " id='itDI'"
+//							+ "  >删除</button>");
 
 					// =========================动态生成模态框信息========================
 					// itEModal 模态框id
@@ -176,13 +181,42 @@ $(function() {
 								"MId" : mid
 							},
 							success : function(data) {
-								alert("编辑成功");
-								$("#itEModal").modal('toggle');
-
-								window.location.reload();
+								if(data.data){
+									$("#itEModal").modal('toggle');
+									window.location.reload();
+								}else{
+									alert(data.msg);
+									$("#itEModal").modal('toggle');
+									window.location.reload();
+								}
 							},
 							error : function(jqXHR) {
-								alert("编辑失败");
+								alert("error");
+							}
+						});
+					});
+					//删除接口
+					$("#itDI").click(function(){
+						var iid =$("#imId").val();
+//						alert(iid);
+						$.ajax({
+							type : "post",
+							url : "deleteInterface",
+							dataType : "json",
+							data : {
+								"id" : iid
+							},
+							success : function(data) {
+								if(data.data){
+									alert(data.msg);
+									window.location.reload();
+								}else{
+									alert(data.msg);
+									window.location.reload();
+								}
+							},
+							error : function(jqXHR) {
+								alert("error");
 							}
 						});
 					});
@@ -201,7 +235,9 @@ $(function() {
 		var dtime = timestamp.toLocaleDateString().replace(/\//g, "/") + " "
 				+ timestamp.toTimeString().substr(0, 8);
 		return dtime;
-	}
-	;
-
+	};
+	
+	$("#deleteModule").click(function(){
+		$("#delMModal").modal('toggle')
+	});
 });

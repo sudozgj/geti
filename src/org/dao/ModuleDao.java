@@ -24,4 +24,11 @@ public interface ModuleDao {
 	 * @return
 	 */
 	public Module getModule(String name);
+	
+	/**
+	 * 删除模块
+	 * @param m
+	 * @return
+	 */
+	public boolean deleteModule(long id);
 }

@@ -32,4 +32,18 @@ public interface InterfaceDao {
 	 * @return
 	 */
 	public boolean updateInterface(Interface i);
+	
+	/**
+	 * 删除接口，通过删除接口对象来操作
+	 * @param i
+	 * @return
+	 */
+	public boolean deleteInterfaceById(long id);
+	
+	/**
+	 * 删除接口，通过属于的模块id（外键），来进行删除
+	 * @param MId
+	 * @return
+	 */
+	public boolean deleteInterfaceByMId(long MId);
 }

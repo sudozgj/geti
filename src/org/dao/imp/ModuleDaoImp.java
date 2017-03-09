@@ -67,4 +67,21 @@ public class ModuleDaoImp implements ModuleDao {
 		}
 	}
 
+	@Override
+	public boolean deleteModule(long id) {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Transaction ts = session.beginTransaction();
+			Module m = (Module) session.load(Module.class, id);
+			session.delete(m);
+			ts.commit();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+
 }

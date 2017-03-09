@@ -17,7 +17,7 @@
             <column name="input" length="255" />
         </property>
         <property name="output" type="java.lang.String">
-            <column name="output" length="1000" not-null="true" />
+            <column name="output" length="10000" not-null="true" />
         </property>
         <property name="description" type="java.lang.String">
             <column name="description" length="255" />

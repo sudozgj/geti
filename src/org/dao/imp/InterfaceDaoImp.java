@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.dao.InterfaceDao;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.model.Interface;
@@ -26,7 +27,7 @@ public class InterfaceDaoImp implements InterfaceDao {
 			i.setName(r.getName());
 			i.setOutput(r.getOutput());
 			i.setTime(r.getTime());
-			
+
 			long id = (Long) session.save(i);
 			ts.commit();
 
@@ -44,11 +45,11 @@ public class InterfaceDaoImp implements InterfaceDao {
 		try {
 			Session session = HibernateSessionFactory.getSession();
 			Transaction ts = session.beginTransaction();
-			
+
 			Query query = session.createQuery("from Interface where MId=?");
 			query.setParameter(0, mId);
 			List<Interface> list = query.list();
-			
+
 			return list;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -63,7 +64,7 @@ public class InterfaceDaoImp implements InterfaceDao {
 		try {
 			Session session = HibernateSessionFactory.getSession();
 			Transaction ts = session.beginTransaction();
-			
+
 			Query query = session.createQuery("from Interface where name=?");
 			query.setParameter(0, name);
 			query.setMaxResults(1);
@@ -88,7 +89,44 @@ public class InterfaceDaoImp implements InterfaceDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
-		} finally{
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+
+	@Override
+	public boolean deleteInterfaceById(long id) {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Transaction ts = session.beginTransaction();
+
+			Interface in = (Interface) session.load(Interface.class, id);
+			session.delete(in);
+			ts.commit();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+
+	@Override
+	public boolean deleteInterfaceByMId(long MId) {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Transaction ts= session.beginTransaction();
+			
+			SQLQuery sqlQuery = session.createSQLQuery("delete from interface where m_id=?");
+			sqlQuery.setParameter(0, MId);
+			sqlQuery.executeUpdate();
+			ts.commit();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
 			HibernateSessionFactory.closeSession();
 		}
 	}

@@ -9,6 +9,17 @@
 	margin-top: 80px;
 }
 
+/*********左侧导航列表**********/
+.liHead {
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 8px;
+	cursor: pointer;
+	padding: 15px;
+	color: aliceblue;
+	background: #03041f;
+}
+
 /*********右侧内容**********/
 #ctn {
 	padding: 20px;
@@ -35,12 +46,3 @@ hr {
 .pi li:hover {
 	font-size: 16px;
 }*/
-.liHead {
-	-moz-border-radius: 15px;
-	-webkit-border-radius: 15px;
-	border-radius: 8px;
-	cursor: pointer;
-	padding: 15px;
-	color: aliceblue;
-	background: #03041f;
-}

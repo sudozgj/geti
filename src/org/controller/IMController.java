@@ -27,7 +27,7 @@ public class IMController {
 	@ResponseBody
 	public Object addInterface(Interface i, String mName, String mDescription)
 			throws Exception {
-
+//可能要修改
 		Module md = mDao.getModule(mName);
 		long mId;
 		if (md != null) {
@@ -79,8 +79,10 @@ public class IMController {
 				String iName = i.getName();
 				inList.add(iName);
 			}
-			nMap.put("iName", inList);
+			nMap.put("mId", mId);
+			nMap.put("mDesc", mDesc);
 			nMap.put("mName", mName);
+			nMap.put("iName", inList);
 			list.add(nMap);
 		}
 

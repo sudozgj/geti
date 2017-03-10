@@ -43,39 +43,39 @@
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="home.html"><strong><span
 								class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</strong>
-					</a></li>
+					</a>
+					</li>
 					<li data-toggle="modal" data-target="#addMModal"><a href="#"><span
 							class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
-							Add Module</a></li>
+							添加模块</a>
+					</li>
 					<li data-toggle="modal" data-target="#addIModal"><a href="#"><span
-							class="glyphicon glyphicon-list" aria-hidden="true"></span> Add
-							Interface</a></li>
-					<li data-toggle="modal" data-target="#delMModal"><a href="#"><span
-							class="glyphicon glyphicon-tag" aria-hidden="true" id="deleteModule"></span> delete
-							Module</a></li>
+							class="glyphicon glyphicon-list" aria-hidden="true"></span> 添加接口</a>
+					</li>
+					<li id="deleteModule"><a href="#"><span
+							class="glyphicon glyphicon-tag" aria-hidden="true"></span> 删除模块</a>
+					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown"><span class="glyphicon glyphicon-user"
-							aria-hidden="true"></span> <span id="nav_user"
-							style="color:#3189F3"> </span> <strong class="caret"></strong> </a>
+							aria-hidden="true"></span> admin <strong class="caret"></strong> </a>
 						<ul class="dropdown-menu" id="userList">
 							<li><a href=""><span class="glyphicon glyphicon-list"
-									aria-hidden="true"></span> 用户信息</a></li>
+									aria-hidden="true"></span> 用户信息</a>
+							</li>
 							<li data-toggle="modal" data-target="#editModal"><a href="#"><span
 									class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-									编辑信息</a>
-							</li>
+									编辑信息</a></li>
 							<li data-toggle="modal" data-target="#pwdModal"><a href="#"><span
 									class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-									修改密码</a></li>
+									修改密码</a>
+							</li>
 							<li class="divider"></li>
 							<li id="logoutBtn"><a href="login.html"><span
 									class="glyphicon glyphicon-off" aria-hidden="true"></span>
-									Logout</a>
-							</li>
-						</ul>
-					</li>
+									Logout</a></li>
+						</ul></li>
 				</ul>
 			</div>
 		</nav>
@@ -89,7 +89,7 @@
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"
 							aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel">模块信息</h4>
+						<h4 class="modal-title" id="myModalLabel">添加模块</h4>
 					</div>
 					<div class="modal-body">
 						<form role="form">
@@ -98,14 +98,16 @@
 									class="form-control" id="amName" placeholder="请输入模块名">
 							</div>
 							<div class="form-group">
-								<label for="amDescription">描述</label> <input type="text"
-									class="form-control" id="amDescription" placeholder="请输入描述">
+								<label for="amDescription">描述</label> 
+								<textarea class="form-control" id="amDescription" rows="2"
+									placeholder="请输入描述"></textarea>
 							</div>
 						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-						<button type="button" class="btn btn-primary" id="addMBtn">确定</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block"
+							id="addMBtn">确定</button>
+						<br>
+						<button type="button" class="btn btn-default btn-lg btn-block"
+							data-dismiss="modal">取消</button>
 					</div>
 				</div>
 			</div>
@@ -121,10 +123,24 @@
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"
 							aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel">接口信息</h4>
+						<h4 class="modal-title" id="myModalLabel">添加接口</h4>
 					</div>
 					<div class="modal-body">
 						<form role="form">
+							<div class="form-group">
+								<label for="iMName">所属模块 <a class="bg-info" href="#"
+									id="createM">去创建</a>
+								</label>
+								<!-- <input type="text"
+									class="form-control" id="iMName" placeholder="请输入模块"> -->
+								<select class="form-control" id="iMName" placeholder="请选则模块">
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+									<option>4</option>
+									<option>5</option>
+								</select>
+							</div>
 							<div class="form-group">
 								<label for="iName">接口名</label> <input type="text"
 									class="form-control" id="iName" placeholder="接口名">
@@ -140,47 +156,21 @@
 							</div>
 							<div class="form-group">
 								<label for="iDescription">接口描述</label>
-								<textarea class="form-control" id="iDescription" rows="3"
-									placeholder="请输入描述"></textarea>
-							</div>
-							<div class="form-group">
-								<label for="iMName">所属模块</label> <input type="text"
-									class="form-control" id="iMName" placeholder="请输入模块">
-							</div>
-							<div class="form-group">
-								<label for="iMDescription">模块描述</label>
-								<textarea class="form-control" id="iMDescription" rows="3"
+								<textarea class="form-control" id="iDescription" rows="2"
 									placeholder="请输入描述"></textarea>
 							</div>
 						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-						<button type="button" class="btn btn-primary" id="addIBtn">确定</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block"
+							id="addIBtn">确定</button>
+						<br>
+						<button type="button" class="btn btn-default btn-lg btn-block"
+							data-dismiss="modal">取消</button>
 					</div>
 				</div>
 			</div>
 		</div>
 		<!-- /模态框 添加接口 -->
 
-		<div class="row clearfix">
-			<div class="col-sm-4 column">
-				<div style="width: 250px" id="lList"></div>
-			</div>
-			<div class="col-sm-8 column">
-				<!-- <div id="ctn" style="background:#ffcfa5"> -->
-				<div id="ctn">
-					<p class="text-right" id="itTime"></p>
-					<h1 id="itName"></h1>
-					<p id=itId></p>
-					<h1 id="itMid"></h1>
-					<div id="itInput"></div>
-					<p id="itOutput"></p>
-					<p id="itDescription"></p>
-					<div id="itEdit" class="rows"></div>
-				</div>
-			</div>
-		</div>
 
 		<!-- 模态框 编辑接口 -->
 		<div class="modal fade" id="itEModal" tabindex="-1" role="dialog"
@@ -261,32 +251,58 @@
 			</div>
 		</div>
 		-->
-		
+
 		<!-- 模态框 删除模块 -->
 		<div class="modal fade" id="delMModal" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel" aria-hidden="true"
 			data-backdrop="static">
-			<div class="modal-dialog modal-sm">
+			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"
 							aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">删除模块</h4>
 					</div>
 					<div class="modal-body">
-						<form role="form">
-							<div class="form-group">
-								<h3>确定删除模块吗</h3>
-							</div>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-						<button type="button" class="btn btn-primary" id="delIBtn">确定</button>
+						<table
+							class="table table-hover table-striped table-condensed table-bordered"
+							id="logTable">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>模块名</th>
+									<th>描述</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody id="delMBody">
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
-		</div><!-- /模态框 删除模块 -->
-		
+		</div>
+		<!-- /模态框 删除模块 -->
+
+
+		<div class="row clearfix">
+			<div class="col-sm-4 column">
+				<div style="width: 250px" id="lList"></div>
+			</div>
+			<div class="col-sm-8 column">
+				<!-- <div id="ctn" style="background:#ffcfa5"> -->
+				<div id="ctn">
+					<p class="text-right" id="itTime"></p>
+					<h1 id="itName"></h1>
+					<p id=itId></p>
+					<h1 id="itMid"></h1>
+					<div id="itInput"></div>
+					<p id="itOutput"></p>
+					<p id="itDescription"></p>
+					<div id="itEdit" class="rows"></div>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

@@ -319,4 +319,8 @@ $(function() {
 		$("#addIModal").modal('toggle');
 		$("#addMModal").modal('toggle');
 	});
+	
+	/*$("#drTest").hover(function(){		//经过下拉，问题：点击无效
+		$("#userList").dropdown('toggle');
+	});*/
 });

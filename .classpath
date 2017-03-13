@@ -10,5 +10,6 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mysql-connector-java-5.1.36-bin.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jackson2.2"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/springMVC4"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/proxool"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

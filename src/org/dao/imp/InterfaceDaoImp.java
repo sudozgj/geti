@@ -10,6 +10,8 @@ import org.hibernate.Transaction;
 import org.model.Interface;
 import org.springframework.stereotype.Service;
 import org.util.HibernateSessionFactory;
+import org.view.VIM;
+import org.view.VIMId;
 
 @Service
 public class InterfaceDaoImp implements InterfaceDao {
@@ -60,16 +62,22 @@ public class InterfaceDaoImp implements InterfaceDao {
 	}
 
 	@Override
-	public Interface getInterface(String name) {
+	public VIMId getInterface(String name) {
 		try {
 			Session session = HibernateSessionFactory.getSession();
 			Transaction ts = session.beginTransaction();
 
-			Query query = session.createQuery("from Interface where name=?");
-			query.setParameter(0, name);
-			query.setMaxResults(1);
-			Interface i = (Interface) query.uniqueResult();
-			return i;
+//			Query query = session.createQuery("from Interface where name=?");
+//			query.setParameter(0, name);
+//			query.setMaxResults(1);
+//			Interface i = (Interface) query.uniqueResult();
+			SQLQuery sqlQuery = session.createSQLQuery("select * from v_i_m where name=?");
+			sqlQuery.setParameter(0, name);
+			sqlQuery.setMaxResults(1);
+			sqlQuery.addEntity(VIM.class);
+			VIM v = (VIM) sqlQuery.uniqueResult();
+			
+			return v.getId();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

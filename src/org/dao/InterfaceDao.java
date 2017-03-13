@@ -3,6 +3,7 @@ package org.dao;
 import java.util.List;
 
 import org.model.Interface;
+import org.view.VIMId;
 
 public interface InterfaceDao {
 	/**
@@ -24,7 +25,7 @@ public interface InterfaceDao {
 	 * @param name
 	 * @return
 	 */
-	public Interface getInterface(String name);
+	public VIMId getInterface(String name);
 	
 	/**
 	 * 编辑接口

@@ -21,11 +21,18 @@ public interface InterfaceDao {
 	public List getInterfaceList(long mId);
 	
 	/**
-	 * 通过名字获取接口
+	 * 通过名字获取接口——视图形
 	 * @param name
 	 * @return
 	 */
 	public VIMId getInterface(String name);
+	
+	/**
+	 * 检验接口名字
+	 * @param name
+	 * @return
+	 */
+	public Interface checkInterface(String name);
 	
 	/**
 	 * 编辑接口

@@ -85,6 +85,26 @@ public class InterfaceDaoImp implements InterfaceDao {
 			HibernateSessionFactory.closeSession();
 		}
 	}
+	
+	@Override
+	public Interface checkInterface(String name) {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Transaction ts = session.beginTransaction();
+
+			Query query = session.createQuery("from Interface where name=?");
+			query.setParameter(0, name);
+			query.setMaxResults(1);
+			Interface i = (Interface) query.uniqueResult();
+			
+			return i;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
 
 	@Override
 	public boolean updateInterface(Interface i) {

@@ -91,4 +91,21 @@ public class ModuleController {
 
 		return JsonObject.getResult(1, "模块接口列表", list);
 	}
+	
+	/**
+	 * 4检验模块名
+	 * @param name
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/checkModule")
+	@ResponseBody
+	public Object checkModule(String name) throws Exception{
+		Module m = mDao.getModule(name);
+		if(m!=null){	
+			return JsonObject.getResult(0, "模块名重复", false);	
+		}else{
+			return JsonObject.getResult(1, "模块名可用", true);
+		}
+	}
 }

@@ -239,7 +239,7 @@ $(function() {
 							$("[data-toggle='tooltip']").tooltip();
 							
 							$("#mEdit").click(function(){
-								alert(1);
+								alert("編輯模块信息");
 							});
 						} else {
 							alert(data.msg);
@@ -339,4 +339,50 @@ $(function() {
 	 * $("#drTest").hover(function(){ //经过下拉，问题：点击无效
 	 * $("#userList").dropdown('toggle'); });
 	 */
+	
+	$("#amName").blur(function(){
+		var mName =$("#amName").val();
+		$.ajax({
+			type : "post",
+			url : "checkModule",
+			cache : false,
+			dataType : "json",
+			data : {
+				"name" : mName
+			},
+			success : function(data) {
+				if (!data.data) {
+					alert(data.msg);
+					$("#amName").val("");
+					$("#amName").focus();
+				}
+			},
+			error : function(jqXHR) {
+				alert("error");
+			}
+		});
+	});
+	
+	$("#iName").blur(function(){
+		var iName =$("#iName").val();
+		$.ajax({
+			type : "post",
+			url : "checkInterface",
+			cache : false,
+			dataType : "json",
+			data : {
+				"name" : iName
+			},
+			success : function(data) {
+				if (!data.data) {
+					alert(data.msg);
+					$("#iName").val("");
+					$("#iName").focus();
+				}
+			},
+			error : function(jqXHR) {
+				alert("error");
+			}
+		});
+	});
 });

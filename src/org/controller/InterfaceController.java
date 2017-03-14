@@ -94,12 +94,18 @@ public class InterfaceController {
 			return JsonObject.getResult(0, "删除接口失败", false);
 	}
 	
+	/**
+	 * 5检验接口名
+	 * @param name
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("/checkInterface")
 	@ResponseBody
 	public Object checkInterface(String name) throws Exception{
 		Interface i = iDao.checkInterface(name);
 		if(i!=null){	
-			return JsonObject.getResult(0, "接口名重复", false);	
+			return JsonObject.getResult(0, "接口名已使用", false);	
 		}else{
 			return JsonObject.getResult(1, "接口名可用", true);
 		}

@@ -31,4 +31,11 @@ public interface ModuleDao {
 	 * @return
 	 */
 	public boolean deleteModule(long id);
+	
+	/**
+	 * 编辑模块
+	 * @param m
+	 * @return
+	 */
+	public boolean updateModule(Module m);
 }

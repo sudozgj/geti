@@ -103,9 +103,25 @@ public class ModuleController {
 	public Object checkModule(String name) throws Exception{
 		Module m = mDao.getModule(name);
 		if(m!=null){	
-			return JsonObject.getResult(0, "模块名重复", false);	
+			return JsonObject.getResult(0, "模块名已使用", false);	
 		}else{
 			return JsonObject.getResult(1, "模块名可用", true);
+		}
+	}
+	
+	/**
+	 * 5修改模块信息
+	 * @param m
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/updateModule")
+	@ResponseBody
+	public Object updateModule(Module m) throws Exception{
+		if(mDao.updateModule(m)){	
+			return JsonObject.getResult(1, "修改模块成功", true);	
+		}else{
+			return JsonObject.getResult(0, "修改模块失败", false);
 		}
 	}
 }
